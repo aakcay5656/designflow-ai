@@ -2,6 +2,10 @@ import {AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig, spring, interpo
 import {Features} from './scenes/Features';
 import {Stats} from './scenes/Stats';
 import {Outro} from './scenes/Outro';
+import {Testimonials} from './scenes/Testimonials';
+import {Problem} from './scenes/Problem';
+import {Demo} from './scenes/Demo';
+
 
 // Intro Scene Component
 const Intro: React.FC = () => {
@@ -110,26 +114,26 @@ const Intro: React.FC = () => {
 export const ProductLaunch: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
-      {/* Voiceover - 23 saniye */}
-      <Audio src={staticFile('assets/voiceover.mp3')} volume={0.8} />
+      {/* 65-second Voiceover */}
+      <Audio src={staticFile('assets/voiceover-extended.mp3')} volume={0.8} />
       
-      {/* Intro: 0-6s (0-180 frames) */}
+      {/* Intro: 0-6s (0-180) */}
       <Sequence from={0} durationInFrames={180}>
         <Intro />
       </Sequence>
       
-      {/* Features: 5.5-15s (165-450 frames) - overlap 15 frame */}
-      <Sequence from={165} durationInFrames={285}>
+      {/* Features: 5.5-22s (165-660) */}
+      <Sequence from={165} durationInFrames={510}>
         <Features />
       </Sequence>
 
-      {/* Stats: 14.5-20s (435-600 frames) - overlap 15 frame */}
-      <Sequence from={435} durationInFrames={165}>
+      {/* Stats: 21.5-35s (645-1050) */}
+      <Sequence from={645} durationInFrames={420}>
         <Stats />
       </Sequence>
       
-      {/* Outro/CTA: 19.5-27s (585-810 frames) - overlap 15 frame */}
-      <Sequence from={585} durationInFrames={225}>
+      {/* Outro: 34.5-65s (1035-1950) - 3 saniye uzadı ✅ */}
+      <Sequence from={1035} durationInFrames={965}>
         <Outro />
       </Sequence>
     </AbsoluteFill>
