@@ -5,11 +5,14 @@
 
 ## 📹 Final Video
 
-https://github.com/user-attachments/assets/7dd5cb49-8617-4fcd-afdb-09eb70e79a5f
+
+
+https://github.com/user-attachments/assets/f1361a4a-3114-47a5-883c-4c356c32b184
 
 
 
-*Geleneksel video düzenleme yazılımı kullanmadan, tamamen kod ile oluşturulmuş 27 saniyelik ürün lansmanı videosu.*
+
+*Geleneksel video düzenleme yazılımı kullanmadan, tamamen kod ile oluşturulmuş  ürün lansmanı videosu.*
 
 ---
 
