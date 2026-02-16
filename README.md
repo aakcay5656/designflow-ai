@@ -20,7 +20,6 @@ https://github.com/user-attachments/assets/f1361a4a-3114-47a5-883c-4c356c32b184
 
 Bu proje, **programatik video üretimi** konusunda Remotion framework'ünü kullanarak geliştirilmiştir. After Effects veya Premiere Pro gibi geleneksel video editörleri yerine, her kare, animasyon ve geçiş TypeScript kodu ile oluşturulmuştur.
 
-**Süre:** 27 saniye (30fps'de 810 kare)  
 **Çözünürlük:** 1920x1080 (Full HD)  
 **Render Süresi:** ~3-5 dakika
 
