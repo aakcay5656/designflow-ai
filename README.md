@@ -1,54 +1,51 @@
-# Remotion video
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+# 🎬 DesignFlow AI - Ürün Lansmanı Videosu
 
-Welcome to your Remotion project!
+> Remotion, TypeScript ve modern web teknolojileri ile AI destekli video üretimi
 
-## Commands
+## 📹 Final Video
 
-**Install Dependencies**
+https://github.com/user-attachments/assets/7dd5cb49-8617-4fcd-afdb-09eb70e79a5f
 
-```console
-npm i
-```
 
-**Start Preview**
 
-```console
-npm run dev
-```
+*Geleneksel video düzenleme yazılımı kullanmadan, tamamen kod ile oluşturulmuş 27 saniyelik ürün lansmanı videosu.*
 
-**Render video**
+---
 
-```console
-npx remotion render
-```
+## 🚀 Proje Hakkında
 
-**Upgrade Remotion**
+Bu proje, **programatik video üretimi** konusunda Remotion framework'ünü kullanarak geliştirilmiştir. After Effects veya Premiere Pro gibi geleneksel video editörleri yerine, her kare, animasyon ve geçiş TypeScript kodu ile oluşturulmuştur.
 
-```console
-npx remotion upgrade
-```
+**Süre:** 27 saniye (30fps'de 810 kare)  
+**Çözünürlük:** 1920x1080 (Full HD)  
+**Render Süresi:** ~3-5 dakika
 
-## Docs
+---
 
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
+## 🛠️ Kullanılan Teknolojiler
 
-## Help
+### Ana Framework
+- **[Remotion](https://www.remotion.dev/)** `v4.0.422` - React tabanlı video üretim framework'ü
+- **React** `v19.2.3` - Component bazlı video yapısı
+- **TypeScript** `v5.9.3` - Type-safe video geliştirme
 
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
+### Tasarım & Stil
+- **Tailwind CSS** `v4.0.0` - Utility-first CSS framework
+- **CSS Gradients & Glassmorphism** - Modern UI efektleri
+- **Custom Animations** - Spring fiziği ve interpolation tabanlı geçişler
 
-## Issues
+### AI Entegrasyonu
+- **Leonardo AI** - Logo ve ikon üretimi (4 özel ikon + 1 logo)
+- **Google Text-to-Speech (gTTS)** - Script'ten sesli anlatım üretimi
+  - Alternatif: ElevenLabs API (premium kalite TTS)
 
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
+### Geliştirme Araçları
+- **Node.js** - Script otomasyonu (ses üretimi)
+- **Axios** `v1.13.5` - TTS servisleri için API istekleri
+- **ESLint** - Kod kalitesi ve tutarlılık
+- **Prettier** - Kod formatlama
 
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+### Build & Render
+- **FFmpeg** (Remotion üzerinden) - MP4 video encoding
+- **Remotion CLI** - Development server ve rendering
