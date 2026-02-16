@@ -1,11 +1,17 @@
-import {AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig, spring, interpolate, Audio, Img, staticFile} from 'remotion';
+import {
+  AbsoluteFill,
+  Sequence,
+  useCurrentFrame,
+  useVideoConfig,
+  spring,
+  interpolate,
+  Audio,
+  Img,
+  staticFile,
+} from 'remotion';
 import {Features} from './scenes/Features';
 import {Stats} from './scenes/Stats';
 import {Outro} from './scenes/Outro';
-import {Testimonials} from './scenes/Testimonials';
-import {Problem} from './scenes/Problem';
-import {Demo} from './scenes/Demo';
-
 
 // Intro Scene Component
 const Intro: React.FC = () => {
@@ -15,41 +21,42 @@ const Intro: React.FC = () => {
   const scale = spring({
     frame,
     fps,
-    config: {damping: 100, stiffness: 200}
+    config: {damping: 100, stiffness: 200},
   });
 
-  const opacity = interpolate(frame, [0, 30], [0, 1]);
+  const fadeIn = interpolate(frame, [0, 30], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
 
-  // Fade out animasyonu ekle (son 30 frame)
-  const fadeOut = interpolate(
-    frame,
-    [270, 300],  // Son 1 saniye
-    [1, 0]
-  );
+  // 10s = 300 frame → son 30 frame: 270–300
+  const fadeOut = interpolate(frame, [270, 300], [1, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  const finalOpacity = Math.min(fadeIn, fadeOut);
 
   const logoRotate = interpolate(
     frame,
     [0, 80],
     [0, 360],
-    {extrapolateRight: 'clamp'}
+    {extrapolateRight: 'clamp'},
   );
 
   const subtitleY = interpolate(
     frame,
     [20, 60],
     [50, 0],
-    {extrapolateRight: 'clamp'}
+    {extrapolateRight: 'clamp'},
   );
 
   const subtitleOpacity = interpolate(
     frame,
     [20, 50],
     [0, 1],
-    {extrapolateRight: 'clamp'}
+    {extrapolateRight: 'clamp'},
   );
-
-  // Her iki opacity'yi birleştir
-  const finalOpacity = Math.min(opacity, fadeOut);
 
   return (
     <AbsoluteFill
@@ -59,50 +66,58 @@ const Intro: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        opacity: finalOpacity  // ✅ Fade out ekle
+        opacity: finalOpacity,
       }}
     >
-      <div style={{
-        opacity,
-        transform: `rotate(${logoRotate}deg) scale(${scale})`,
-        marginBottom: 40
-      }}>
-        <Img 
+      <div
+        style={{
+          opacity: fadeIn,
+          transform: `rotate(${logoRotate}deg) scale(${scale})`,
+          marginBottom: 40,
+        }}
+      >
+        <Img
           src={staticFile('assets/logo.png')}
           style={{
             width: 200,
             height: 200,
             objectFit: 'contain',
-            filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4))'
+            filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4))',
           }}
         />
       </div>
 
-      <div style={{
-        transform: `scale(${scale})`,
-        opacity,
-        textAlign: 'center'
-      }}>
-        <h1 style={{
-          fontSize: 120,
-          fontWeight: 900,
-          color: 'white',
-          margin: 0,
-          fontFamily: 'Inter, sans-serif',
-          letterSpacing: '-2px',
-          textShadow: '0 4px 20px rgba(0,0,0,0.3)'
-        }}>
+      <div
+        style={{
+          transform: `scale(${scale})`,
+          opacity: fadeIn,
+          textAlign: 'center',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: 120,
+            fontWeight: 900,
+            color: 'white',
+            margin: 0,
+            fontFamily: 'Inter, sans-serif',
+            letterSpacing: '-2px',
+            textShadow: '0 4px 20px rgba(0,0,0,0.3)',
+          }}
+        >
           DesignFlow AI
         </h1>
-        
-        <p style={{
-          fontSize: 36,
-          color: 'rgba(255,255,255,0.9)',
-          marginTop: 20,
-          fontFamily: 'Inter, sans-serif',
-          transform: `translateY(${subtitleY}px)`,
-          opacity: subtitleOpacity
-        }}>
+
+        <p
+          style={{
+            fontSize: 36,
+            color: 'rgba(255,255,255,0.9)',
+            marginTop: 20,
+            fontFamily: 'Inter, sans-serif',
+            transform: `translateY(${subtitleY}px)`,
+            opacity: subtitleOpacity,
+          }}
+        >
           Design Faster. Create Smarter.
         </p>
       </div>
@@ -111,32 +126,33 @@ const Intro: React.FC = () => {
 };
 
 // Main Video Component
+// Main Video Component
 export const ProductLaunch: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
-      {/* 65-second Voiceover */}
-      <Audio src={staticFile('assets/voiceover-extended.mp3')} volume={0.8} />
-      
-      {/* Intro: 0-6s (0-180) */}
-      <Sequence from={0} durationInFrames={180}>
-        <Intro />
-      </Sequence>
-      
-      {/* Features: 5.5-22s (165-660) */}
-      <Sequence from={165} durationInFrames={510}>
-        <Features />
-      </Sequence>
+    {/* Voiceover (≈65s) */}
+    <Audio src={staticFile('assets/voiceover-extended.mp3')} volume={0.8} />
+    
+    {/* Intro: 0 - 10s  (0 - 300) */}
+    <Sequence from={0} durationInFrames={300}>
+      <Intro />
+    </Sequence>
+    
+    {/* Features: 9.5s - 30.5s  (285 - 915) */}
+    <Sequence from={285} durationInFrames={630}>
+      <Features />
+    </Sequence>
 
-      {/* Stats: 21.5-35s (645-1050) */}
-      <Sequence from={645} durationInFrames={420}>
-        <Stats />
-      </Sequence>
-      
-      {/* Outro: 34.5-65s (1035-1950) - 3 saniye uzadı ✅ */}
-      <Sequence from={1035} durationInFrames={965}>
-        <Outro />
-      </Sequence>
-    </AbsoluteFill>
+    {/* Stats: 30.5s - 50.5s  (915 - 1515) → 20 saniye */}
+    <Sequence from={915} durationInFrames={600}>
+      <Stats />
+    </Sequence>
+    
+    {/* Outro: 50.5s - 66s  (1515 - 1980) → 15.5 saniye (en kısa) */}
+    <Sequence from={1515} durationInFrames={465}>
+      <Outro />
+    </Sequence>
+  </AbsoluteFill>
   );
 };
 

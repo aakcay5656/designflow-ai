@@ -4,8 +4,18 @@ export const Outro: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
 
-  // Scene fade in
-  const fadeIn = interpolate(frame, [0, 30], [0, 1]);
+  // Scene fade transitions
+
+const fadeInScene = interpolate(frame, [0, 30], [0, 1]);
+
+// Fade out: SON 30 frame (435-465)
+const fadeOutScene = interpolate(frame, [435, 465], [1, 0], {
+  extrapolateLeft: 'clamp',
+  extrapolateRight: 'clamp',
+});
+
+const sceneOpacity = Math.min(fadeInScene, fadeOutScene);
+
 
   const scale = spring({
     frame,
@@ -25,6 +35,7 @@ export const Outro: React.FC = () => {
     [-200, 2000],
     {extrapolateRight: 'clamp'}
   );
+
   return (
     <AbsoluteFill
       style={{
@@ -34,7 +45,7 @@ export const Outro: React.FC = () => {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        opacity: fadeIn  // ✅ Smooth fade
+        opacity: sceneOpacity  // ✅ Smooth fade
       }}
     >
       {/* Animated background circle */}

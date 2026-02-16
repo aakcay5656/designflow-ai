@@ -30,13 +30,14 @@ export const Features: React.FC = () => {
   const titleOpacity = interpolate(frame, [0, 20], [0, 1]);
   
   // Fade in
-  const fadeIn = interpolate(frame, [0, 30], [0, 1]);
-  
+const fadeInScene = interpolate(frame, [0, 30], [0, 1]);  
   // Fade out (son 30 frame)
-  const fadeOut = interpolate(frame, [435, 465], [1, 0]);
+  const fadeOutScene = interpolate(frame, [600, 630], [1, 0], {
+  extrapolateLeft: 'clamp',
+  extrapolateRight: 'clamp',
+});
   
-  const finalOpacity = Math.min(fadeIn, fadeOut);
-  
+const finalOpacity = Math.min(fadeInScene, fadeOutScene);  
   return (
     <AbsoluteFill style={{
       background: 'linear-gradient(135deg, #1e1b4b 0%, #7c3aed 50%, #ec4899 100%)',

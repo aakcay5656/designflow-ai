@@ -32,11 +32,13 @@ export const RemotionRoot: React.FC = () => {
 <Composition
   id="ProductLaunch"
   component={ProductLaunch}
-  durationInFrames={1980}  // 65 saniye (65 * 30fps)
+  durationInFrames={1980}  // 66 saniye @ 30fps
   fps={30}
   width={1920}
   height={1080}
 />
+
+
 
 
 

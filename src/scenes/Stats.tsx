@@ -13,11 +13,17 @@ export const Stats: React.FC = () => {
   const frame = useCurrentFrame();
   
   const titleOpacity = interpolate(frame, [0, 20], [0, 1]);
-  
-  // Scene fade transitions
-  const sceneFadeIn = interpolate(frame, [0, 30], [0, 1]);
-  const sceneFadeOut = interpolate(frame, [285, 315], [1, 0]);
-  const sceneFinalOpacity = Math.min(sceneFadeIn, sceneFadeOut);
+
+const fadeInScene = interpolate(frame, [0, 30], [0, 1]);
+
+// Fade out: SON 30 frame (570-600)
+const fadeOutScene = interpolate(frame, [570, 600], [1, 0], {
+  extrapolateLeft: 'clamp',
+  extrapolateRight: 'clamp',
+});
+
+const finalOpacity = Math.min(fadeInScene, fadeOutScene);
+
 
   return (
     <AbsoluteFill style={{
@@ -27,7 +33,7 @@ export const Stats: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '0 150px',
-      opacity: sceneFinalOpacity  // ✅ Smooth fade
+      opacity: finalOpacity  // ✅ Smooth fade
     }}>
       <h2 style={{
         fontSize: 64,
